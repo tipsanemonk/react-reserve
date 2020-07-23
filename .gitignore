@@ -1,6 +1,7 @@
 node_modules
 .next
 
+temp
 dist
 next.config.*
 now.json
