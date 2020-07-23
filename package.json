@@ -4,7 +4,7 @@
   "description": "Project for MERN Stack - The Complete Guide",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 4000",
     "start": "next start",
     "build": "next build"
   },
