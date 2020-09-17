@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button, Form, Icon, Message, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
+import axios from 'axios';
 import catchErrors from '../utils/catchErrors';
+import baseUrl from '../utils/baseUrl';
+import { handleLogin } from '../utils/auth'
 
 const INITIAL_USER = {
   email: '',
@@ -28,8 +31,10 @@ function Login() {
     try {
       setLoading(true);
       setError('');
-      console.log(user);
-      // TODO: make request
+      const url = `${baseUrl}/api/login`;
+      const payload = { ...user };
+      const response = await axios.post(url, payload);
+      handleLogin(response.data);
     } catch (error) {
       catchErrors(error, setError)
     } finally {
@@ -65,6 +70,7 @@ function Login() {
         <Form.Input 
           fluid
           icon="lock"
+          type="password"
           iconPosition="left"
           label="Password"
           placeholder="Password"
